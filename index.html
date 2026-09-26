@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow">
+<title>VideoRNG — Relightable Neural Gaussians from Generative Video Models</title>
+<link rel="stylesheet" href="styles.css?v=1790395468"><script src="data.js?v=1790395468" defer></script><script src="app.js?v=1790395468" defer></script>
+</head>
+<body>
+<main id="main">
+<section class="hero" id="top">
+  <p class="eyebrow">Anonymous research project</p>
+  <h1><span class="name">Video<span>RNG</span></span><span class="sub">Relightable Neural Gaussians from Generative Video Models</span></h1>
+  <p class="authors">Anonymous Authors</p>
+  <p class="toplinks tabs"><a class="pill" href="#scenes">Interactive scenes</a><a class="pill" href="#gallery">Assets in the paper</a><a class="pill" href="#groundtruth">Ground-truth comparisons</a><a class="pill" href="#photoset">More generated assets</a></p>
+</section>
+<section class="scene-section" id="scenes">
+  <div class="section-heading"><div><p class="eyebrow">Interactive showcase</p><h2>Assets in context.</h2></div>
+  <p class="hint"><span class="desktop-hint">Hover over an object to explore it. Click to pin.</span><span class="touch-hint">Tap an object to explore it.</span></p></div>
+  <div class="tabs" role="tablist"><button class='tab' type='button' role='tab' data-scene='overgrown' aria-selected='true'>Overgrown</button><button class='tab' type='button' role='tab' data-scene='studio' aria-selected='false'>Studio</button><button class='tab' type='button' role='tab' data-scene='cabinet' aria-selected='false'>Natural history</button><button class='tab' type='button' role='tab' data-scene='kitchen' aria-selected='false'>Kitchen table</button><button class='tab' type='button' role='tab' data-scene='hall' aria-selected='false'>Gallery hall</button></div>
+  <div class="scene-frame" id="scene-frame">
+    <img class="scene-image" id="scene-image" src="assets/scenes/overgrown.jpg?v=1790378870" width="3840" height="1728" alt="Abandoned things reclaimed by moss, coral and cactus: a clock, a sunken piano, plate armour, a forest car, a shipwreck and a typewriter." hidden>
+    <video class="scene-video" id="scene-video" autoplay muted loop playsinline preload="auto" poster="assets/scenes/overgrown.jpg?v=1790378870" width="3840" height="1728" src="assets/scenes/overgrown.mp4?v=1790378868"></video>
+    <button class="playpause" id="playpause" type="button" aria-label="Pause the light sweep" title="Pause / play the light sweep">&#10074;&#10074;</button>
+    <svg class="scene-regions" id="scene-regions" viewBox="0 0 3840 1728" aria-hidden="true"></svg>
+    <div class="scene-markers" id="scene-markers" aria-hidden="true"></div>
+    <div class="popover" id="popover" hidden><video id="pop-video" muted loop playsinline preload="none"></video><div class="pop-label" id="pop-label"></div></div>
+    <div class="scene-caption"><span class="dot" aria-hidden="true"></span><span id="scene-caption">Overgrown</span></div>
+  </div>
+  <div class="chips" id="chips" role="group" aria-label="Objects in this scene"></div>
+  <div class="detail" id="detail">
+    <div class="detail-heading"><div><h3 id="detail-name">—</h3></div><span class="count" id="detail-count"></span></div>
+    <div class="detail-media single">
+      <figure class="single"><video id="detail-trip" muted loop playsinline preload="none"></video><figcaption><span>Generated input</span><span>Ours, same camera and light</span><span>Ours, relit</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+<section class="gallery-section" id="gallery">
+  <div class="section-heading"><div><p class="eyebrow">Assets in the paper</p><h2>The examples shown in the paper figures.</h2></div>
+  </div>
+  <div class="grid trips"><figure class='card wide' id='card-o01'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o01_triplet.mp4.jpg' data-src='web/o01_triplet.mp4'></video></div>
+  <figcaption><b>Vine-covered clock</b><span class='prompt'>A grandfather clock wrapped in thick climbing vines and flowering morning glories, ferns sprouting from the cracked face, ivy tendrils coiled around the pendulum, hyperrealistic render</span></figcaption>
+</figure><figure class='card wide' id='card-o02'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o02_triplet.mp4.jpg' data-src='web/o02_triplet.mp4'></video></div>
+  <figcaption><b>Butter croissant</b><span class='prompt'>A single butter croissant with a crescent form built from a tapered dough triangle rolled into a coil, showing a swollen middle and thinner curled tips. The exterior is deep golden and glossy from egg wash, with paper-thin laminated layers separating into flaking shards along the ridges, while a torn end reveals an open honeycomb crumb of thin translucent dough walls and irregular air pockets.</span></figcaption>
+</figure><figure class='card wide' id='card-o03'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o03_triplet.mp4.jpg' data-src='web/o03_triplet.mp4'></video></div>
+  <figcaption><b>Cable-knit beanie</b><span class='prompt'>A chunky hand-knit wool beanie with a folded double-thick brim in wide ribbing, a crown of thick twisting cable-knit columns separated by narrow purl valleys, and a large faux-fur pompom on top. The heathered oatmeal yarn is fuzzy with loose fibers rising from every stitch, and the cream-colored pompom is a dense sphere of long, slightly translucent synthetic hairs with gently curved tips.</span></figcaption>
+</figure><figure class='card wide' id='card-o04'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o04_triplet.mp4.jpg' data-src='web/o04_triplet.mp4'></video></div>
+  <figcaption><b>Rocking horse</b><span class='prompt'>A Victorian rocking horse carved from wood with a dappled grey painted coat, mounted on a bow rocker of two long curved rails. It has a real horsehair mane and tail in coarse cream strands, glass eyes, a leather saddle with brass studs, stirrups on leather straps, and a red-and-black bridle with a bit and reins. The paint is crazed with fine cracks over the curved body.</span></figcaption>
+</figure><figure class='card wide' id='card-o05'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o05_triplet.mp4.jpg' data-src='web/o05_triplet.mp4'></video></div>
+  <figcaption><b>Barn owl, perching</b><span class='prompt'>A barn owl in an upright perching posture with a heart-shaped facial disc of stiff white feathers edged in tawny brown, dark eyes, and a small hooked beak. Its back and wings are golden-buff finely speckled with grey and white, the wing feathers layered in overlapping rows with visible barbs, and the breast is soft white down. Long feathered legs end in curved talons.</span></figcaption>
+</figure><figure class='card wide' id='card-o06'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o06_triplet.mp4.jpg' data-src='web/o06_triplet.mp4'></video></div>
+  <figcaption><b>Dreamcatcher</b><span class='prompt'>A dreamcatcher with a hoop of bent willow wrapped in tan suede lacing, an inner web of thin waxed sinew woven in a spiraling net of diamond openings toward a small central hole, with glass seed beads and one round turquoise bead strung into the web. Three leather cords hang from the bottom, each threaded with wooden beads and ending in a bundle of long striped pheasant and white goose feathers.</span></figcaption>
+</figure><figure class='card wide' id='card-o07'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o07_triplet.mp4.jpg' data-src='web/o07_triplet.mp4'></video></div>
+  <figcaption><b>Silk tassel</b><span class='prompt'>A large silk drapery tassel with a turned wooden mold head wrapped in gold and burgundy silk thread in a herringbone pattern, a decorative ruff of looped bullion cord, and a full skirt of hundreds of fine silk threads hanging straight to a common length. The silk has a strong anisotropic satin sheen, and a thick braided loop rises from the top of the head.</span></figcaption>
+</figure><figure class='card wide' id='card-o08'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o08_triplet.mp4.jpg' data-src='web/o08_triplet.mp4'></video></div>
+  <figcaption><b>Echeveria rosette</b><span class='prompt'>An Echeveria succulent rosette with about forty thick, spoon-shaped leaves arranged in tight spiraling layers, each leaf tapering to a small pointed tip and edged with a thin translucent margin. The leaves are pale blue-green with a powdery farina bloom that gives a soft matte velvety surface, and the outer leaves show pink and lavender blushes. The compact plant sits on a short thick stem.</span></figcaption>
+</figure><figure class='card wide' id='card-o09'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o09_triplet.mp4.jpg' data-src='web/o09_triplet.mp4'></video></div>
+  <figcaption><b>Barn owl</b><span class='prompt'>A barn owl with a pale, heart-shaped facial disc, a compact hooked beak, and a broad body enclosed by folded buff-and-gray wings. Fine facial feathers form dense concentric borders around dark glossy eyes. The wing surfaces combine smooth overlapping flight feathers with softer fringed margins, and the short feathered legs end in pale, textured toes with sharply curved talons.</span></figcaption>
+</figure><figure class='card wide' id='card-o10'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o10_triplet.mp4.jpg' data-src='web/o10_triplet.mp4'></video></div>
+  <figcaption><b>Luna moth</b><span class='prompt'>A luna moth with a stout, softly furred body, feathery antennae, and broad pale green wings arranged in a shallow spread. Each hindwing extends into a long, narrow curved tail. Fine overlapping scales give the wing surfaces a satin texture, with small translucent eyespot centers, darker marginal bands, and delicate veins beneath the thin membranes.</span></figcaption>
+</figure><figure class='card wide' id='card-o11'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o11_triplet.mp4.jpg' data-src='web/o11_triplet.mp4'></video></div>
+  <figcaption><b>Red grapes</b><span class='prompt'>A fresh cluster of red table grapes attached to a dry, branching woody stem. Each grape possesses a taut, semi-translucent skin coated in a thin, powdery white natural bloom, displaying soft internal light scattering and deep ruby tones beneath the matte surface dust.</span></figcaption>
+</figure><figure class='card wide' id='card-o12'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o12_triplet.mp4.jpg' data-src='web/o12_triplet.mp4'></video></div>
+  <figcaption><b>Witch&#x27;s butter fungus</b><span class='prompt'>A jelly mass of witch&#x27;s butter fungus oozing from a dead branch, translucent golden orange lobes wrinkled and brain-like, glistening gelatinous surface, hyperrealistic macro render</span></figcaption>
+</figure><figure class='card wide' id='card-o13'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o13_triplet.mp4.jpg' data-src='web/o13_triplet.mp4'></video></div>
+  <figcaption><b>Bird&#x27;s nest fungi</b><span class='prompt'>A colony of bird&#x27;s nest fungi nestled in wood mulch, tiny cup-shaped nests each holding several spherical spore packets like miniature eggs, hyperrealistic macro 3D scan</span></figcaption>
+</figure><figure class='card wide' id='card-o14'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o14_triplet.mp4.jpg' data-src='web/o14_triplet.mp4'></video></div>
+  <figcaption><b>Plumose anemones</b><span class='prompt'>A dense cluster of plumose sea anemones attached to submerged rock, hundreds of feathery translucent tentacles swaying from each individual, pink and orange column bases, hyperrealistic underwater render</span></figcaption>
+</figure><figure class='card wide' id='card-o15'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o15_triplet.mp4.jpg' data-src='web/o15_triplet.mp4'></video></div>
+  <figcaption><b>Christmas tree worms</b><span class='prompt'>A Christmas tree worm colony embedded in brain coral, dozens of tiny spiraling feather-like crowns in electric blue yellow and crimson jutting from calcified tubes in the coral surface, hyperrealistic marine render</span></figcaption>
+</figure><figure class='card wide' id='card-o16'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o16_triplet.mp4.jpg' data-src='web/o16_triplet.mp4'></video></div>
+  <figcaption><b>Cicada husk</b><span class='prompt'>A cicada exoskeleton still clinging to tree bark, translucent amber husk split down the back, every delicate segment leg and eye cavity preserved in brittle chitin, hyperrealistic macro 3D scan</span></figcaption>
+</figure><figure class='card wide' id='card-o17'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o17_triplet.mp4.jpg' data-src='web/o17_triplet.mp4'></video></div>
+  <figcaption><b>Ostrich plume</b><span class='prompt'>A large ostrich plume feather, thousands of long loose barbs cascading from a central rachis in fluffy downy sprays, soft ivory fading to grey at the base, hyperrealistic feather render</span></figcaption>
+</figure><figure class='card wide' id='card-o18'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o18_triplet.mp4.jpg' data-src='web/o18_triplet.mp4'></video></div>
+  <figcaption><b>Fur coat</b><span class='prompt'>A brown fur coat with two long sleeves, a broad collar and an open front. Dense, fine strands of fur cover the body, collar and turned-back cuffs, giving the garment a soft, shaggy appearance. Hyperrealistic garment render.</span></figcaption>
+</figure><figure class='card wide' id='card-o19'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o19_triplet.mp4.jpg' data-src='web/o19_triplet.mp4'></video></div>
+  <figcaption><b>Saguaro trunk</b><span class='prompt'>A section of saguaro cactus trunk, deep vertical pleated ribs running top to bottom, clusters of long yellow spines at each areole, rough waxy green skin, hyperrealistic plant render</span></figcaption>
+</figure><figure class='card wide' id='card-o20'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o20_triplet.mp4.jpg' data-src='web/o20_triplet.mp4'></video></div>
+  <figcaption><b>Prickly pear</b><span class='prompt'>A prickly pear cactus cluster with ripe fruits, flat oval pads covered in dense glochid tufts and longer spines, magenta fruits with fine bristles, hyperrealistic plant render</span></figcaption>
+</figure><figure class='card wide' id='card-o21'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o21_triplet.mp4.jpg' data-src='web/o21_triplet.mp4'></video></div>
+  <figcaption><b>Pitcher plant</b><span class='prompt'>A pitcher plant (Nepenthes) with lid open, curved tubular trap half-filled with digestive fluid, waxy slippery interior walls, nectar glands on the rim peristome, hyperrealistic plant render</span></figcaption>
+</figure><figure class='card wide' id='card-o22'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o22_triplet.mp4.jpg' data-src='web/o22_triplet.mp4'></video></div>
+  <figcaption><b>Baobab trunk</b><span class='prompt'>A young baobab tree trunk, smooth bulbous swollen gray bark with deep stretch-mark folds and gnarled buttress roots at the base, hyperrealistic tree render</span></figcaption>
+</figure><figure class='card wide' id='card-o23'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o23_triplet.mp4.jpg' data-src='web/o23_triplet.mp4'></video></div>
+  <figcaption><b>Ammonite fossil</b><span class='prompt'>A polished ammonite fossil in cross-section, iridescent spiral chambers lined with mother-of-pearl, some chambers filled with calcite crystal druzy, hyperrealistic fossil render</span></figcaption>
+</figure><figure class='card wide' id='card-o24'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o24_triplet.mp4.jpg' data-src='web/o24_triplet.mp4'></video></div>
+  <figcaption><b>Mossy typewriter</b><span class='prompt'>An abandoned typewriter completely overtaken by moss and ferns, keys barely visible under velvety green growth, small fern fronds unfurling from the carriage, hyperrealistic render</span></figcaption>
+</figure><figure class='card wide' id='card-o25'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o25_triplet.mp4.jpg' data-src='web/o25_triplet.mp4'></video></div>
+  <figcaption><b>Sunken piano</b><span class='prompt'>A sunken upright piano on the seabed, exterior encrusted with mussels and barnacles in thick colonies, seaweed trailing from the keyboard, hyperrealistic underwater render</span></figcaption>
+</figure><figure class='card wide' id='card-o26'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o26_triplet.mp4.jpg' data-src='web/o26_triplet.mp4'></video></div>
+  <figcaption><b>Overgrown armour</b><span class='prompt'>An ancient suit of plate armor propped in a corner, every joint and crevice packed with cushions of emerald moss and sprouting grass blades, rust streaks down the metal, hyperrealistic render</span></figcaption>
+</figure><figure class='card six' id='card-o27'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o27.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o27_relit.mp4.jpg' data-src='web/o27_relit.mp4'></video></div></div>
+  <figcaption><b>Grandfather clock</b><span class='prompt'>A grandfather clock wrapped in thick climbing vines and flowering morning glories, ferns sprouting from the cracked face, ivy tendrils coiled around the pendulum, hyperrealistic render</span></figcaption>
+</figure><figure class='card wide' id='card-o28'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o28_triplet.mp4.jpg' data-src='web/o28_triplet.mp4'></video></div>
+  <figcaption><b>Shipwreck bow</b><span class='prompt'>A shipwreck bow fragment on the sea floor, wooden timbers transformed into coral reef, soft corals sponges and tubeworms covering every surface, fish sheltering within, hyperrealistic marine render</span></figcaption>
+</figure><figure class='card wide' id='card-o29'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o29_triplet.mp4.jpg' data-src='web/o29_triplet.mp4'></video></div>
+  <figcaption><b>Beehive comb</b><span class='prompt'>A cross-section of active beehive with exposed comb, layered vertical wax sheets with honey stores capped in white wax, brood cells sealed with tan cappings, queen cell protruding, bees crawling throughout, hyperrealistic 3D scan</span></figcaption>
+</figure><figure class='card six' id='card-o30'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o30.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o30_relit.mp4.jpg' data-src='web/o30_relit.mp4'></video></div></div>
+  <figcaption><b>Amethyst geode</b><span class='prompt'>A tall amethyst cathedral geode standing upright on its own flat-cut base, with a rough, knobby grey-brown basalt exterior and a deep open cavity running most of its height. The cavity is lined with densely packed translucent violet quartz points, deepest purple at their tips and nearly colorless at their bases, and the polished rim around the opening shows concentric bands of white and grey agate over a thin glassy chalcedony layer.</span></figcaption>
+</figure><figure class='card six' id='card-o31'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o31.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o31_relit.mp4.jpg' data-src='web/o31_relit.mp4'></video></div></div>
+  <figcaption><b>Robin&#x27;s nest</b><span class='prompt'>An American robin&#x27;s nest, a deep cup woven from coarse grass stems, fine twigs, and strips of bark, with an inner mud layer and a smooth interior finish of fine dry grass. Four smooth glossy pale blue eggs sit inside. Loose grass blades and plant fibers stick out irregularly from the outer wall, and patches of dried moss cling to the base.</span></figcaption>
+</figure><figure class='card six' id='card-o32'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o32.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o32_relit.mp4.jpg' data-src='web/o32_relit.mp4'></video></div></div>
+  <figcaption><b>Braided challah</b><span class='prompt'>A six-strand braided challah loaf, tall and oval, with the plaited strands crossing over one another in a tight interlocking pattern that swells at the center and tapers at both ends. The crust is deep mahogany and glossy from egg wash, dusted with sesame and poppy seeds that collect in the seams between strands, with pale cream dough exposed in the stretched gaps.</span></figcaption>
+</figure><figure class='card six' id='card-o33'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o33.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o33_relit.mp4.jpg' data-src='web/o33_relit.mp4'></video></div></div>
+  <figcaption><b>Salmon fly</b><span class='prompt'>A classic fully dressed salmon fishing fly on a long black hook, with a body of layered silk floss and wrapped gold tinsel ribbing, a spiky throat hackle, and married wing slips of dyed goose and turkey feathers in red, yellow, and blue. A topping of golden pheasant crest curves over the wing, jungle cock eye feathers flank the sides, and the head is glossy black lacquered thread.</span></figcaption>
+</figure><figure class='card six' id='card-o34'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o34.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o34_relit.mp4.jpg' data-src='web/o34_relit.mp4'></video></div></div>
+  <figcaption><b>Cedar-strip canoe</b><span class='prompt'>A cedar strip canoe with a hull of narrow alternating light and dark cedar strips running lengthwise under a clear glossy fiberglass and varnish coating, so the wood grain and strip seams are visible. It has ash gunwales, hand-caned seats woven in an open hexagonal pattern, a curved center thwart, and brass stem bands on the upturned bow and stern. The hull interior shows the same strips under clear finish.</span></figcaption>
+</figure><figure class='card six' id='card-o35'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o35.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o35_relit.mp4.jpg' data-src='web/o35_relit.mp4'></video></div></div>
+  <figcaption><b>Moroccan lantern</b><span class='prompt'>A Moroccan lantern with a hexagonal brass body pierced in dense arabesque patterns of tiny stars and interlocking geometric openings, a domed top with a finial and hanging ring, and side panels of colored stained glass in amber, blue, and green set behind the pierced metal. The brass has a warm antique patina with slight tarnish, and the glass is translucent with a rippled hand-poured texture.</span></figcaption>
+</figure><figure class='card six' id='card-o36'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o36.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o36_relit.mp4.jpg' data-src='web/o36_relit.mp4'></video></div></div>
+  <figcaption><b>Corn broom</b><span class='prompt'>A traditional corn broom with a long hardwood handle, bound to a thick head of stiff broomcorn fibers by several rows of wire wrapping and tight cross-stitched cord bands that flatten the head into a fan. The fibers are straw-yellow with fine ridges and taper into splayed fraying tips, and the topmost fibers are folded over the handle beneath the binding.</span></figcaption>
+</figure><figure class='card six' id='card-o38'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o38.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o38_relit.mp4.jpg' data-src='web/o38_relit.mp4'></video></div></div>
+  <figcaption><b>Peacock feather fan</b><span class='prompt'>A mature peacock feather fan assembled with overlapping tail feathers anchored in a carved mother-of-pearl base. Each feather features a central chitinous shaft supporting thousands of microscopic, iridescent barbules that shift natively between brilliant teal, violet, and gold. The pearlescent shell base exhibits smooth, milky translucency with soft rainbow sheen across its sculpted curves.</span></figcaption>
+</figure><figure class='card six' id='card-o39'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o39.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o39_relit.mp4.jpg' data-src='web/o39_relit.mp4'></video></div></div>
+  <figcaption><b>Honeycomb slice</b><span class='prompt'>A slice of fresh honeycomb overflowing with viscous, amber-colored raw honey. The rigid hexagonal beeswax cells are semi-translucent with thin, natural cell walls, while the thick honey creates smooth, refractive droplets bridging across cell openings. Small suspended wax particles and air bubbles add internal depth beneath the glossy liquid surface.</span></figcaption>
+</figure><figure class='card six' id='card-o40'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o40.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o40_relit.mp4.jpg' data-src='web/o40_relit.mp4'></video></div></div>
+  <figcaption><b>Oyster</b><span class='prompt'>A fresh, wet oyster on the half shell showing a glistening, irregular mollusk body with semi-translucent gray-white mantle edges, a dark visceral mass, and pooled clear liquor resting inside a rough, layered, and craggy calcium carbonate shell.</span></figcaption>
+</figure><figure class='card six' id='card-o42'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o42.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o42_relit.mp4.jpg' data-src='web/o42_relit.mp4'></video></div></div>
+  <figcaption><b>Kiwi slice</b><span class='prompt'>A slice of kiwi fruit displaying a bright green translucent pulp center surrounded by a ring of small, opaque black seeds radiating outward toward a thin, fuzzy brown skin.</span></figcaption>
+</figure><figure class='card six' id='card-o43'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o43.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o43_relit.mp4.jpg' data-src='web/o43_relit.mp4'></video></div></div>
+  <figcaption><b>Gorgonian sea fan</b><span class='prompt'>A large gorgonian sea fan, intricate lattice of reddish coral branches forming a delicate flat web, tiny extended feeding polyps along every branchlet, hyperrealistic photogrammetry scan</span></figcaption>
+</figure><figure class='card six' id='card-o44'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o44.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o44_relit.mp4.jpg' data-src='web/o44_relit.mp4'></video></div></div>
+  <figcaption><b>Tube-worm coral</b><span class='prompt'>A Christmas tree worm colony embedded in brain coral, dozens of tiny spiraling feather-like crowns in electric blue yellow and crimson jutting from calcified tubes in the coral surface, hyperrealistic marine render</span></figcaption>
+</figure><figure class='card six' id='card-o45'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o45.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o45_relit.mp4.jpg' data-src='web/o45_relit.mp4'></video></div></div>
+  <figcaption><b>Atlas moth</b><span class='prompt'>A mounted atlas moth with wings spread, dusty scaled wings in maroon and tan with snake-head pattern tips, feathery antennae and furry velvet thorax, hyperrealistic specimen render</span></figcaption>
+</figure><figure class='card six' id='card-o46'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o46.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o46_relit.mp4.jpg' data-src='web/o46_relit.mp4'></video></div></div>
+  <figcaption><b>Dragonfly</b><span class='prompt'>A dragonfly with wings outspread, four transparent membranous wings laced with intricate dark venation patterns, iridescent green-blue segmented body, massive compound eyes, hyperrealistic insect render</span></figcaption>
+</figure><figure class='card six' id='card-o47'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o47.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o47_relit.mp4.jpg' data-src='web/o47_relit.mp4'></video></div></div>
+  <figcaption><b>Great hornbill</b><span class='prompt'>A great hornbill head, massive curved yellow beak topped with a hollow casque, bristled eyelashes, coarse black feathers, skin folds around the eye, hyperrealistic bird render</span></figcaption>
+</figure><figure class='card six' id='card-o48'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o48.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o48_relit.mp4.jpg' data-src='web/o48_relit.mp4'></video></div></div>
+  <figcaption><b>Fur coat</b><span class='prompt'>A brown fur coat with two long sleeves, a broad collar and an open front. Dense, fine strands of fur cover the body, collar and turned-back cuffs, giving the garment a soft, shaggy appearance. Hyperrealistic garment render.</span></figcaption>
+</figure><figure class='card six' id='card-o49'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o49.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o49_relit.mp4.jpg' data-src='web/o49_relit.mp4'></video></div></div>
+  <figcaption><b>Highland cow</b><span class='prompt'>A Highland cow face staring forward, long shaggy ginger fringe covering most of the eyes, wide curved horns with ridged annulations, wet black nose, hyperrealistic creature render</span></figcaption>
+</figure><figure class='card six' id='card-o50'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o50.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o50_relit.mp4.jpg' data-src='web/o50_relit.mp4'></video></div></div>
+  <figcaption><b>Sunflower head</b><span class='prompt'>A mature sunflower head in seed, dense spiral Fibonacci arrangement of thousands of individual seeds in dark and light stripes, dried petaled rays curling at the edges, hyperrealistic botanical render</span></figcaption>
+</figure><figure class='card six' id='card-o51'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o51.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o51_relit.mp4.jpg' data-src='web/o51_relit.mp4'></video></div></div>
+  <figcaption><b>Young baobab</b><span class='prompt'>A young baobab tree trunk, smooth bulbous swollen gray bark with deep stretch-mark folds and gnarled buttress roots at the base, hyperrealistic tree render</span></figcaption>
+</figure><figure class='card six' id='card-o52'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o52.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o52_relit.mp4.jpg' data-src='web/o52_relit.mp4'></video></div></div>
+  <figcaption><b>Selenite towers</b><span class='prompt'>A cluster of selenite tower crystals, tall transparent gypsum columns with striated satin surfaces fanning out in a radiating bouquet, hyperrealistic mineral render</span></figcaption>
+</figure><figure class='card six' id='card-o53'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o53.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o53_relit.mp4.jpg' data-src='web/o53_relit.mp4'></video></div></div>
+  <figcaption><b>Polished ammonite</b><span class='prompt'>A polished ammonite fossil in cross-section, iridescent spiral chambers lined with mother-of-pearl, some chambers filled with calcite crystal druzy, hyperrealistic fossil render</span></figcaption>
+</figure><figure class='card six' id='card-o54'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o54.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o54_relit.mp4.jpg' data-src='web/o54_relit.mp4'></video></div></div>
+  <figcaption><b>Globe artichoke</b><span class='prompt'>A whole globe artichoke, tightly packed overlapping thick leathery bracts in green and purple with sharp tips, stem still attached, hyperrealistic vegetable render</span></figcaption>
+</figure><figure class='card six' id='card-o55'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o55.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o55_relit.mp4.jpg' data-src='web/o55_relit.mp4'></video></div></div>
+  <figcaption><b>Encrusted piano</b><span class='prompt'>A sunken upright piano on the seabed, exterior encrusted with mussels and barnacles in thick colonies, seaweed trailing from the keyboard, hyperrealistic underwater render</span></figcaption>
+</figure><figure class='card six' id='card-o56'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o56.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o56_relit.mp4.jpg' data-src='web/o56_relit.mp4'></video></div></div>
+  <figcaption><b>Plate armour</b><span class='prompt'>An ancient suit of plate armor propped in a corner, every joint and crevice packed with cushions of emerald moss and sprouting grass blades, rust streaks down the metal, hyperrealistic render</span></figcaption>
+</figure><figure class='card six' id='card-o57'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o57.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o57_relit.mp4.jpg' data-src='web/o57_relit.mp4'></video></div></div>
+  <figcaption><b>Forest car</b><span class='prompt'>An abandoned vintage car in a forest, massive tree roots crushing through the hood and windshield, thick moss blanketing the roof and seats, saplings growing from the interior, hyperrealistic render</span></figcaption>
+</figure><figure class='card six' id='card-o58'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o58.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o58_relit.mp4.jpg' data-src='web/o58_relit.mp4'></video></div></div>
+  <figcaption><b>Diving helmet</b><span class='prompt'>An antique brass diving helmet recovered from deep water, completely encrusted with coralline algae oysters and tubeworms, porthole glass cracked and fogged, hyperrealistic render</span></figcaption>
+</figure><figure class='card six' id='card-o60'>
+  <div class='trip'><div class='sixrow'><img src='assets/boards/o60.jpg' loading='lazy' alt='the six generated views over our renders of the same views'><video muted loop playsinline preload='none' poster='web/o60_relit.mp4.jpg' data-src='web/o60_relit.mp4'></video></div></div>
+  <figcaption><b>Orb-weaver web</b><span class='prompt'>A large orb weaver spider web heavy with morning dew, thousands of water droplets beading along the radial and spiral silk threads, every strand catching moisture, hyperrealistic macro render</span></figcaption>
+</figure><figure class='card wide' id='card-o61'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/o61_triplet.mp4.jpg' data-src='web/o61_triplet.mp4'></video></div>
+  <figcaption><b>Romanesco broccoli</b><span class='prompt'>A whole head of Romanesco broccoli, a dense conical inflorescence in pale chartreuse green built from spiraling rows of pointed buds, each of which is itself a smaller cone of spiraling buds repeating the same pattern down to a granular surface. The spirals wind around a central peak, and a collar of thick, ribbed blue-green leaves with pale midribs and wavy margins wraps the base of the head.</span></figcaption>
+</figure></div>
+</section>
+
+<section class="gallery-section" id="groundtruth">
+  <div class="section-heading"><div><p class="eyebrow">Ground-truth comparisons</p><h2>Synthetic assets with a known answer.</h2></div><p class="hint">Left: ground truth. Right: ours.</p></div>
+  <div class="synthgrid"><figure class='synth'>
+  <figcaption class='head'><b>Tactical soldier</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val0_spin.mp4.jpg' data-src='web/val0_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 34.83 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val0_relight.mp4.jpg' data-src='web/val0_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 29.59 dB</figcaption>
+</figure><figure class='synth'>
+  <figcaption class='head'><b>Orca</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val1_spin.mp4.jpg' data-src='web/val1_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 31.74 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val1_relight.mp4.jpg' data-src='web/val1_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 27.31 dB</figcaption>
+</figure><figure class='synth'>
+  <figcaption class='head'><b>City bicycle</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val2_spin.mp4.jpg' data-src='web/val2_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 29.61 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val2_relight.mp4.jpg' data-src='web/val2_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 27.55 dB</figcaption>
+</figure><figure class='synth'>
+  <figcaption class='head'><b>Suit mannequin</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val3_spin.mp4.jpg' data-src='web/val3_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 32.45 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val3_relight.mp4.jpg' data-src='web/val3_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 27.42 dB</figcaption>
+</figure><figure class='synth'>
+  <figcaption class='head'><b>Seahorse ornament</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val4_spin.mp4.jpg' data-src='web/val4_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 30.08 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val4_relight.mp4.jpg' data-src='web/val4_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 27.73 dB</figcaption>
+</figure><figure class='synth'>
+  <figcaption class='head'><b>Gold pendant</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val5_spin.mp4.jpg' data-src='web/val5_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 32.22 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val5_relight.mp4.jpg' data-src='web/val5_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 28.81 dB</figcaption>
+</figure><figure class='synth'>
+  <figcaption class='head'><b>Metal bottles</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val6_spin.mp4.jpg' data-src='web/val6_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 30.61 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val6_relight.mp4.jpg' data-src='web/val6_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 25.66 dB</figcaption>
+</figure><figure class='synth'>
+  <figcaption class='head'><b>Mountain bike</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val7_spin.mp4.jpg' data-src='web/val7_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 32.45 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val7_relight.mp4.jpg' data-src='web/val7_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 30.24 dB</figcaption>
+</figure><figure class='synth'>
+  <figcaption class='head'><b>Sword set</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val8_spin.mp4.jpg' data-src='web/val8_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 35.00 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val8_relight.mp4.jpg' data-src='web/val8_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 32.50 dB</figcaption>
+</figure><figure class='synth'>
+  <figcaption class='head'><b>Birdcage stand</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val9_spin.mp4.jpg' data-src='web/val9_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 31.04 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val9_relight.mp4.jpg' data-src='web/val9_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 30.61 dB</figcaption>
+</figure><figure class='synth'>
+  <figcaption class='head'><b>Skeleton doll</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val10_spin.mp4.jpg' data-src='web/val10_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 30.83 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val10_relight.mp4.jpg' data-src='web/val10_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 28.14 dB</figcaption>
+</figure><figure class='synth'>
+  <figcaption class='head'><b>Monkey skeletons</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val11_spin.mp4.jpg' data-src='web/val11_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 28.64 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val11_relight.mp4.jpg' data-src='web/val11_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 28.20 dB</figcaption>
+</figure><figure class='synth'>
+  <figcaption class='head'><b>Pine trees</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val12_spin.mp4.jpg' data-src='web/val12_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 30.00 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val12_relight.mp4.jpg' data-src='web/val12_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 29.30 dB</figcaption>
+</figure><figure class='synth'>
+  <figcaption class='head'><b>Sunglasses</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val14_spin.mp4.jpg' data-src='web/val14_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 29.01 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val14_relight.mp4.jpg' data-src='web/val14_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 27.11 dB</figcaption>
+</figure><figure class='synth'>
+  <figcaption class='head'><b>Armoured mech</b></figcaption>
+  <video muted loop playsinline preload='none' poster='web/val15_spin.mp4.jpg' data-src='web/val15_spin.mp4'></video><figcaption>Turntable &middot; left GT, right ours &middot; 27.83 dB</figcaption>
+  <video muted loop playsinline preload='none' poster='web/val15_relight.mp4.jpg' data-src='web/val15_relight.mp4'></video><figcaption>Relighting &middot; left GT, right ours &middot; 24.95 dB</figcaption>
+</figure></div>
+</section>
+<section class="gallery-section" id="photoset">
+  <div class="section-heading"><div><p class="eyebrow">More assets</p><h2>118 more generated assets.</h2></div>
+  <p class="hint">Generated from photo-style text prompts with two variants of our video generator (RGBA and RGB turntables). Each card: generated input &middot; ours on the same camera path and light &middot; ours relit.</p></div>
+  <div class="grid trips"><figure class='card wide' id='card-p001'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p001_triplet.mp4.jpg' data-src='web/p001_triplet.mp4'></video></div>
+  <figcaption><b>Pitcher plant</b><span class='prompt'>A Nepenthes pitcher plant trap, a bulbous flask-shaped pitcher with a narrow waist and flaring mouth, its walls mottled green and deep red with a translucent, waxy quality. A ribbed peristome of raised concentric ridges rings the mouth, and a leathery lid overhangs it on a short hinge. Two fringed wings run down the front, and a coiled tendril connects the pitcher to a leaf. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p002'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p002_triplet.mp4.jpg' data-src='web/p002_triplet.mp4'></video></div>
+  <figcaption><b>Insect in amber</b><span class='prompt'>A polished amber nodule, an irregular rounded lump of translucent honey-gold fossil resin with one flat face, containing a well-preserved fly with delicate legs and wings suspended near the center. Internal fractures, tiny bubbles, and swirling cloudy inclusions run through the material, and the unpolished sides retain a rough, crackled, opaque brown crust. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p003'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p003_triplet.mp4.jpg' data-src='web/p003_triplet.mp4'></video></div>
+  <figcaption><b>Purple grapes</b><span class='prompt'>A cluster of dark purple grapes hanging in a tight conical bunch from a woody stem branching into fine green pedicels. Each grape is an oval berry with a slightly translucent, waxy skin covered in a dusty pale bloom, with a small dark scar at the tip. A few berries are pressed against each other and slightly flattened, and the stem shows fine longitudinal ridges. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p004'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p004_triplet.mp4.jpg' data-src='web/p004_triplet.mp4'></video></div>
+  <figcaption><b>Amethyst geode</b><span class='prompt'>A tall amethyst cathedral geode standing upright on its own flat-cut base, with a rough, knobby grey-brown basalt exterior and a deep open cavity running most of its height. The cavity is lined with densely packed translucent violet quartz points, deepest purple at their tips and nearly colorless at their bases, and the polished rim around the opening shows concentric bands of white and grey agate over a thin glassy chalcedony layer. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p005'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p005_triplet.mp4.jpg' data-src='web/p005_triplet.mp4'></video></div>
+  <figcaption><b>Carved cuckoo clock</b><span class='prompt'>A Black Forest cuckoo clock carved from linden wood, the case shaped like a small chalet with a steep pitched roof, carved oak leaves and vine clusters framing the face, and a perched carved bird above the dial. Two pine-cone-shaped iron weights hang below on brass chains, a carved leaf pendulum hangs from a rod, and a small hinged door sits above the dial. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p006'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p006_triplet.mp4.jpg' data-src='web/p006_triplet.mp4'></video></div>
+  <figcaption><b>Violin</b><span class='prompt'>An antique violin featuring a polished maple back with a prominent flamed grain pattern exhibiting strong anisotropic chatoyancy under a clear, glossy amber varnish. The carved scroll, fine f-holes, black ebony fingerboard, and wound metallic strings present a rich interplay of finished wood textures and metallic components. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p007'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p007_triplet.mp4.jpg' data-src='web/p007_triplet.mp4'></video></div>
+  <figcaption><b>Pistachio ice-cream cone</b><span class='prompt'>A waffle cone containing a rounded scoop of pistachio ice cream beneath an irregular dark chocolate shell. Deep embossed squares cover the tapered cone, with a thicker rolled rim and a visible overlapping seam. Static cracks in the glossy chocolate expose softly textured pale green ice cream, including small nut fragments and compact ridges around the scoop’s lower edge. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p008'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p008_triplet.mp4.jpg' data-src='web/p008_triplet.mp4'></video></div>
+  <figcaption><b>Pearlescent glass bauble</b><span class='prompt'>A decorative holiday ornament made of fragile, thin-walled blown glass with an iridescent, mother-of-pearl surface coating. The spherical bulb is topped with a stamped metal cap and wire hanging loop, showing soft rainbow color shifts and clear internal reflections across its surface. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p009'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p009_triplet.mp4.jpg' data-src='web/p009_triplet.mp4'></video></div>
+  <figcaption><b>Halved mangosteen</b><span class='prompt'>A fresh mangosteen fruit split open to reveal a thick, leathery dark-purple pericarp surrounding four fleshy, snow-white seed segments that exhibit soft translucency and juicy surface wetness. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p010'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p010_triplet.mp4.jpg' data-src='web/p010_triplet.mp4'></video></div>
+  <figcaption><b>Jointed wooden puppet</b><span class='prompt'>A wooden marionette with a rounded human face, segmented limbs, and visible joint gaps at the shoulders, elbows, hips, and knees. Fine strings connect the head and limbs to an attached cross-shaped control bar. A small woven vest and folded trousers contrast with smooth painted wood, metal joint pins, carved fingers, and softly textured yarn hair. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p011'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p011_triplet.mp4.jpg' data-src='web/p011_triplet.mp4'></video></div>
+  <figcaption><b>Butter croissant</b><span class='prompt'>A single butter croissant with a crescent form built from a tapered dough triangle rolled into a coil, showing a swollen middle and thinner curled tips. The exterior is deep golden and glossy from egg wash, with paper-thin laminated layers separating into flaking shards along the ridges, while a torn end reveals an open honeycomb crumb of thin translucent dough walls and irregular air pockets. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p012'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p012_triplet.mp4.jpg' data-src='web/p012_triplet.mp4'></video></div>
+  <figcaption><b>Gold-and-red silk tassel</b><span class='prompt'>A large silk drapery tassel with a turned wooden mold head wrapped in gold and burgundy silk thread in a herringbone pattern, a decorative ruff of looped bullion cord, and a full skirt of hundreds of fine silk threads hanging straight to a common length. The silk has a strong anisotropic satin sheen, and a thick braided loop rises from the top of the head. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p013'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p013_triplet.mp4.jpg' data-src='web/p013_triplet.mp4'></video></div>
+  <figcaption><b>Metallic green beetle</b><span class='prompt'>A Chrysochroa jewel beetle with an elongated body and hard, smooth elytra of metallic green iridescence grading into gold and copper along the edges, and a bright violet-blue stripe running lengthwise. The surface has fine dimpled punctures under the polished finish, and the underside is metallic red-orange. Six jointed legs, short serrated antennae, and bulging dark eyes complete the form. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p014'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p014_triplet.mp4.jpg' data-src='web/p014_triplet.mp4'></video></div>
+  <figcaption><b>Iridescent ammonite</b><span class='prompt'>An iridescent ammonite fossil with a thick, tightly coiled shell and a pronounced outer whorl surrounding a recessed spiral center. Raised branching ribs cross the curved sides and continue toward the rounded outer rim. Preserved nacreous shell patches have green and copper iridescence, contrasting with rough mineral-filled gaps and a chipped section exposing pale chamber partitions. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p015'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p015_triplet.mp4.jpg' data-src='web/p015_triplet.mp4'></video></div>
+  <figcaption><b>Halved fig</b><span class='prompt'>A fresh, split fig revealing a soft, tear-shaped outer skin fading from green to deep purple, opening to expose a dense interior mass of hundreds of tiny, juicy red flowers and crunchy seeds drenched in translucent nectar. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p016'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p016_triplet.mp4.jpg' data-src='web/p016_triplet.mp4'></video></div>
+  <figcaption><b>Stained-glass lamp</b><span class='prompt'>An Art Nouveau leaded stained-glass table lamp with a domed shade made of hundreds of small pieces of opalescent glass in a dragonfly-and-water pattern, each piece bounded by raised soldered copper foil lines. The glass is translucent and subsurface-scattering, with mottled green, amber, and blue tones, and the shade sits on a heavy patinated bronze base cast in a ribbed tree-trunk form. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p017'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p017_triplet.mp4.jpg' data-src='web/p017_triplet.mp4'></video></div>
+  <figcaption><b>Red-eyed tree frog</b><span class='prompt'>A red-eyed tree frog in a crouched posture, its smooth bright green skin glossy and slightly translucent with blue-and-cream vertical stripes along the flanks. It has large bulging red eyes with vertical pupils, orange toes with wide translucent adhesive pads, thin limbs folded tightly against the body, and a pale cream belly. The skin has a moist, subsurface-scattering quality. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p018'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p018_triplet.mp4.jpg' data-src='web/p018_triplet.mp4'></video></div>
+  <figcaption><b>Spanish dancer nudibranch</b><span class='prompt'>A Spanish dancer nudibranch, a large sea slug with a broad, elongated body whose thin mantle margins are ruffled into deep wavy folds. Its skin is velvety crimson mottled with white, slightly translucent at the frilled edges, and glossy with a wet mucous sheen. Two ribbed rhinophores rise from the head, and a rosette of six feathery, branching gill plumes emerges from the rear of the back. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p019'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p019_triplet.mp4.jpg' data-src='web/p019_triplet.mp4'></video></div>
+  <figcaption><b>Sea turtle</b><span class='prompt'>A sea turtle with a heavy carapace built from overlapping, horny scutes showing rich tortoiseshell translucency, amber hues, and fine radial growth rings. The flippers and neck feature textured, leathery skin covered in small, polygonal scales, while tiny barnacles and fine green algae threads cling to the rough edges of the shell. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p020'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p020_triplet.mp4.jpg' data-src='web/p020_triplet.mp4'></video></div>
+  <figcaption><b>Red tin robot</b><span class='prompt'>A wind-up tin robot toy with a box-shaped torso, a rounded head, ribbed tubular arms, and broad hollow metal boots. Folded sheet-metal seams and small tabs define the connected body panels, while a fixed winding key projects from one side. Glossy red-and-cream enamel contrasts with exposed silver joints, punched grille openings, and raised circular eye housings. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p021'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p021_triplet.mp4.jpg' data-src='web/p021_triplet.mp4'></video></div>
+  <figcaption><b>Japanese paper lantern</b><span class='prompt'>A traditional Japanese paper lantern (chochin) constructed from a thin, spiraling bamboo rib frame covered in semi-translucent white washi paper. The paper exhibits a fibrous, uneven texture with embedded plant fibers visible under surface illumination, while the top and bottom are finished with lacquered, glossy black wood rings. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p022'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p022_triplet.mp4.jpg' data-src='web/p022_triplet.mp4'></video></div>
+  <figcaption><b>Malachite cluster</b><span class='prompt'>A stalactitic malachite specimen with unequal knuckled columns fused into a broad, irregular mineral base. Each column has rounded bulbous enlargements and shallow longitudinal furrows, while broken margins reveal compact fibrous layers. The dark emerald exterior combines velvety crystalline crusts with smoother waxy ridges and recessed pockets between neighboring columns. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p023'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p023_triplet.mp4.jpg' data-src='web/p023_triplet.mp4'></video></div>
+  <figcaption><b>Vintage globe</b><span class='prompt'>An antique terrestrial globe mounted in a brass meridian ring and wooden tripod stand. The globe surface features hand-applied paper gore segments covered in aged, yellowed varnish with fine surface cracking, while the polished wood legs display rich grain depth. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p024'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p024_triplet.mp4.jpg' data-src='web/p024_triplet.mp4'></video></div>
+  <figcaption><b>Crowned pigeon</b><span class='prompt'>A crowned pigeon with a rounded blue-gray body, a small head, and an airy fan-shaped crest composed of slender feathers with delicate terminal branches. Broad folded wings carry overlapping feather layers above a long, compact tail. The breast has dense, softly textured plumage, while the reddish legs have segmented scales and slender toes ending in curved dark claws. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p025'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p025_triplet.mp4.jpg' data-src='web/p025_triplet.mp4'></video></div>
+  <figcaption><b>Juniper bonsai</b><span class='prompt'>A shimpaku juniper bonsai in a literati style, a slender trunk twisting upward with deeply fissured red-brown bark and a long strip of bleached, smooth deadwood spiraling along one side. Dense pads of fine scale-like foliage in blue-green sit on a few short branches near the top, and a single cascading branch drops below the rim of a shallow, unglazed brown ceramic pot with exposed surface roots. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p026'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p026_triplet.mp4.jpg' data-src='web/p026_triplet.mp4'></video></div>
+  <figcaption><b>Pearl nautilus shell</b><span class='prompt'>A carved nautilus shell featuring a smooth, polished pearlescent exterior that displays soft, rainbow-colored iridescence across its spiral whorls. A cut section reveals the internal camera chambers divided by thin, translucent nacre septa that curve smoothly toward the central siphuncle opening. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p027'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p027_triplet.mp4.jpg' data-src='web/p027_triplet.mp4'></video></div>
+  <figcaption><b>Luna moth</b><span class='prompt'>A luna moth with a stout, softly furred body, feathery antennae, and broad pale green wings arranged in a shallow spread. Each hindwing extends into a long, narrow curved tail. Fine overlapping scales give the wing surfaces a satin texture, with small translucent eyespot centers, darker marginal bands, and delicate veins beneath the thin membranes. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p028'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p028_triplet.mp4.jpg' data-src='web/p028_triplet.mp4'></video></div>
+  <figcaption><b>Amethyst cluster</b><span class='prompt'>A crystal cluster of amethyst growing on a dark, rocky basalt matrix. The specimen features dozens of sharp, hexagonal quartz pyramids ranging from deep violet at the tips to pale, translucent lilac near the base. The crystal faces exhibit glassy lustrous reflections, internal fracture veining, and crisp, razor-sharp edges. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p029'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p029_triplet.mp4.jpg' data-src='web/p029_triplet.mp4'></video></div>
+  <figcaption><b>Echeveria rosette</b><span class='prompt'>An Echeveria succulent rosette with about forty thick, spoon-shaped leaves arranged in tight spiraling layers, each leaf tapering to a small pointed tip and edged with a thin translucent margin. The leaves are pale blue-green with a powdery farina bloom that gives a soft matte velvety surface, and the outer leaves show pink and lavender blushes. The compact plant sits on a short thick stem. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p030'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p030_triplet.mp4.jpg' data-src='web/p030_triplet.mp4'></video></div>
+  <figcaption><b>King protea</b><span class='prompt'>A king protea flower head, a large goblet-shaped bloom with several rings of long pointed bracts in deep pink flaring outward, each bract stiff, slightly fuzzy, and pale-edged. The center is a dome of hundreds of white filamentous florets with silky hairs and dark tips, and the head sits on a thick woody stem with leathery oval leaves. The bracts are slightly translucent at their edges. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p031'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p031_triplet.mp4.jpg' data-src='web/p031_triplet.mp4'></video></div>
+  <figcaption><b>Alligator snapping turtle</b><span class='prompt'>An alligator snapping turtle with a heavy shell bearing three prominent longitudinal ridges of pyramidal scutes. Its oversized head has a hooked beak, deeply creased skin, and fleshy fringes along the jaw and neck. Thick limbs carry overlapping scales and blunt claws, while the long tapering tail has a raised row of rough, angular plates. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p032'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p032_triplet.mp4.jpg' data-src='web/p032_triplet.mp4'></video></div>
+  <figcaption><b>Blue-and-gold macaw</b><span class='prompt'>A blue-and-yellow macaw with a deep curved beak, a broad chest, folded wings, and a long graduated tail of narrow pointed feathers. Layered blue wing coverts contrast with dense golden breast plumage and small dark feather lines across the pale facial skin. The thick gray toes have pronounced scales, and the black beak has a smooth surface with subtle growth ridges. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p033'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p033_triplet.mp4.jpg' data-src='web/p033_triplet.mp4'></video></div>
+  <figcaption><b>Old-man marionette</b><span class='prompt'>A carved wooden marionette of a bearded old peasant hanging from a wooden control bar by taut black threads to its head, hands, and knees. The face is hand-carved lime wood with pronounced cheeks and a hooked nose, painted in matte flesh tones with glass eyes. It has jointed limbs with carved wooden hands and boots, a coarse linen shirt, a felt vest with brass buttons, and grey wool hair and beard. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p034'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p034_triplet.mp4.jpg' data-src='web/p034_triplet.mp4'></video></div>
+  <figcaption><b>Wooden rocking horse</b><span class='prompt'>A Victorian rocking horse carved from wood with a dappled grey painted coat, mounted on a bow rocker of two long curved rails. It has a real horsehair mane and tail in coarse cream strands, glass eyes, a leather saddle with brass studs, stirrups on leather straps, and a red-and-black bridle with a bit and reins. The paint is crazed with fine cracks over the curved body. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p035'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p035_triplet.mp4.jpg' data-src='web/p035_triplet.mp4'></video></div>
+  <figcaption><b>Western saddle</b><span class='prompt'>A Western saddle with a hand-tooled leather seat and skirts in a floral basket-weave pattern, a raised swelled fork with a leather-wrapped horn, a high cantle, wooden stirrups with leather hoods, and long fenders. Silver conchos and buckles secure the fenders and cinch straps, and the underside is lined with dense cream sheepskin fleece. The leather is oiled dark brown with a soft satin finish. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p036'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p036_triplet.mp4.jpg' data-src='web/p036_triplet.mp4'></video></div>
+  <figcaption><b>Glass fishing float</b><span class='prompt'>A vintage Japanese glass fishing float, a hand-blown sphere of pale sea-green glass with trapped bubbles and a rough sealed button, encased in a knotted rope net of tarred manila cord. The net forms diamond openings tied at each intersection, gathered into a thick loop at the top, and the glass is translucent with slight thickness variation. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p037'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p037_triplet.mp4.jpg' data-src='web/p037_triplet.mp4'></video></div>
+  <figcaption><b>Pink axolotl</b><span class='prompt'>A leucistic axolotl, a pale pink salamander with a broad flat head, small lidless dark eyes, a wide mouth, and three pairs of external gills branching from behind the head, each gill a feathery stalk lined with fine pink filaments. Its smooth translucent skin shows a faint blush of blood vessels and subsurface scattering, and a thin fin runs along its back into a flattened tail. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p038'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p038_triplet.mp4.jpg' data-src='web/p038_triplet.mp4'></video></div>
+  <figcaption><b>Garden snail</b><span class='prompt'>A garden snail in an extended posture, its spiral shell a globular coil of five whorls with fine growth lines and bands of brown and yellow, the shell slightly translucent with a glossy calcified surface. Its soft grey-brown body is wrinkled and covered in a wet, glossy mucus film, with two long upper tentacles bearing eye spots and two shorter lower tentacles. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p039'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p039_triplet.mp4.jpg' data-src='web/p039_triplet.mp4'></video></div>
+  <figcaption><b>Sarracenia pitcher plant</b><span class='prompt'>A pitcher plant with several upright tubular pitchers connected to a compact root crown. Each pitcher broadens toward a rolled, strongly ribbed mouth beneath a curved hood, with a narrow wing along its outer wall. Thin green-and-burgundy tissue shows branching veins and translucent patches, while the lower tubes remain smooth and merge into slender, overlapping leaf bases. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p040'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p040_triplet.mp4.jpg' data-src='web/p040_triplet.mp4'></video></div>
+  <figcaption><b>Desert rose</b><span class='prompt'>A gypsum desert rose composed of thick, overlapping mineral blades arranged into several connected rosettes. Broad sandy petals intersect at steep angles, forming deep wedge-shaped gaps and an irregular scalloped outline. Fine embedded grains give the beige surfaces a rough matte texture, while thinner blade margins are pale and slightly translucent, with occasional stepped fractures. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p041'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p041_triplet.mp4.jpg' data-src='web/p041_triplet.mp4'></video></div>
+  <figcaption><b>Jade dragon ornament</b><span class='prompt'>A carved jade dragon statuette crafted from light green, semi-translucent nephrite with soft, milky translucency and a high oily polish. The body features intricately carved, overlapping scales, serpentine curves, undercut claws, and a flowing, fibrous beard, with variations in mineral density creating natural green color banding deep within the stone. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p042'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p042_triplet.mp4.jpg' data-src='web/p042_triplet.mp4'></video></div>
+  <figcaption><b>Cloisonne vase</b><span class='prompt'>A piece of antique cloisonné enamel artwork on a copper vase base, featuring intricate brass wire filigree filled with glossy, colorful enamel pastes separated by crisp metallic borders. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p043'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p043_triplet.mp4.jpg' data-src='web/p043_triplet.mp4'></video></div>
+  <figcaption><b>Rusted anchor</b><span class='prompt'>A stockless ship&#x27;s anchor with a heavy cast shank, two broad flat flukes pivoting from a crown, and a large shackle at the top connected to several links of thick stud-link chain. The iron is deeply pitted with layers of orange-brown rust and flaking black paint, with barnacle scars along the flukes. The chain links are oval with a central stud bar. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p044'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p044_triplet.mp4.jpg' data-src='web/p044_triplet.mp4'></video></div>
+  <figcaption><b>Alto saxophone</b><span class='prompt'>An alto saxophone with a conical brass body curving into a flared bell, its surface finished in glossy gold lacquer with faint brushed scratches. Dozens of pearl-topped key cups, rod-mounted levers, springs, and leather pads cluster along the tube, with a curved neck and a black hard-rubber mouthpiece with a cane reed and ligature. The bell rim carries hand-engraved floral scrollwork. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p045'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p045_triplet.mp4.jpg' data-src='web/p045_triplet.mp4'></video></div>
+  <figcaption><b>Moroccan lantern</b><span class='prompt'>A Moroccan lantern with a hexagonal brass body pierced in dense arabesque patterns of tiny stars and interlocking geometric openings, a domed top with a finial and hanging ring, and side panels of colored stained glass in amber, blue, and green set behind the pierced metal. The brass has a warm antique patina with slight tarnish, and the glass is translucent with a rippled hand-poured texture. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p046'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p046_triplet.mp4.jpg' data-src='web/p046_triplet.mp4'></video></div>
+  <figcaption><b>Sitar</b><span class='prompt'>A sitar with a large hollow gourd resonator of polished toon wood, a long hollow neck bearing about twenty curved brass frets tied on with silk cord, and a second small gourd resonator near the peghead. Seven main strings and eleven sympathetic strings run over bone bridges, with rows of pegs along the neck. The body is covered in fine inlaid bone and floral relief carving with a deep lacquer finish. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p047'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p047_triplet.mp4.jpg' data-src='web/p047_triplet.mp4'></video></div>
+  <figcaption><b>Copper diving helmet</b><span class='prompt'>A copper diving helmet of the classic twelve-bolt pattern with a spherical bonnet, four round glass viewports set in threaded brass rings with protective bar grilles, a brass exhaust valve, an air inlet elbow, and a communications fitting. The bonnet joins a wide breastplate with twelve raised brass studs and wing nuts. The copper has a mottled reddish patina, and the brass fittings are polished. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p048'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p048_triplet.mp4.jpg' data-src='web/p048_triplet.mp4'></video></div>
+  <figcaption><b>Shearling boot</b><span class='prompt'>A shearling winter boot with a broad rounded toe, a tall leather upper, and a thick folded fleece collar. Heavy laces pass through metal hooks and reinforced eyelets above a padded tongue. The brown leather has smooth waxed areas and fine creases around the ankle, contrasting with dense curled wool, exposed stitched seams, and a deeply treaded rubber sole. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p049'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p049_triplet.mp4.jpg' data-src='web/p049_triplet.mp4'></video></div>
+  <figcaption><b>Vintage roller skate</b><span class='prompt'>A quad roller skate with a tall lace-up leather boot mounted above a metal plate and two articulated wheel trucks. Four translucent amber polyurethane wheels have rounded edges and recessed metal bearings. The padded ankle, stitched leather panels, and broad fabric laces contrast with smooth wheel surfaces, threaded adjustment hardware, and a ribbed rubber toe stop. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p050'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p050_triplet.mp4.jpg' data-src='web/p050_triplet.mp4'></video></div>
+  <figcaption><b>Sourdough loaf</b><span class='prompt'>A freshly baked loaf of sourdough bread cut open to expose a porous, airy interior crumb with irregular, large gas pockets and thin, translucent gluten webbing. The exterior crust is thick, blistered, and golden-brown, dusted with coarse white flour particles caught within deep, sharp scoring cuts across the top surface. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p051'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p051_triplet.mp4.jpg' data-src='web/p051_triplet.mp4'></video></div>
+  <figcaption><b>Soft-shell crab</b><span class='prompt'>A soft-shell crab prepared for cooking, showcasing a translucent, flexible carapace with brownish-green mottling over delicate, papery walking legs. The damp, glistening outer shell exhibits soft surface reflections, exposed feathery gill structures along the sides, and subtle subsurface tissue translucency. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p052'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p052_triplet.mp4.jpg' data-src='web/p052_triplet.mp4'></video></div>
+  <figcaption><b>Oyster on the half shell</b><span class='prompt'>A fresh, wet oyster on the half shell showing a glistening, irregular mollusk body with semi-translucent gray-white mantle edges, a dark visceral mass, and pooled clear liquor resting inside a rough, layered, and craggy calcium carbonate shell. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p053'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p053_triplet.mp4.jpg' data-src='web/p053_triplet.mp4'></video></div>
+  <figcaption><b>Chameleon</b><span class='prompt'>A veiled chameleon standing with its prehensile tail coiled into a tight spiral, its fused zygodactyl feet split into opposing toe groups. A tall bony head casque rises in a sharp wedge, and the body is covered in granular, bead-like scales of varying sizes, turquoise-green with vertical bands of yellow and orange. A serrated crest of enlarged scales runs along the spine and throat, and its turret-shaped eyes are covered in scaled cone-shaped lids. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p054'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p054_triplet.mp4.jpg' data-src='web/p054_triplet.mp4'></video></div>
+  <figcaption><b>Highland cow</b><span class='prompt'>A Highland cow standing in a relaxed posture, covered in a long, thick, shaggy coat of rusty red-brown hair hanging in matted waves down its sides with a heavy fringe over its eyes. Wide sweeping horns curve up and outward from the top of its broad head, pale keratin with dark tips and fine ridged grooves. It has sturdy legs, a pink muzzle, and a tufted tail. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p055'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p055_triplet.mp4.jpg' data-src='web/p055_triplet.mp4'></video></div>
+  <figcaption><b>Rhinoceros beetle</b><span class='prompt'>A rhinoceros beetle with a compact oval body, a tall curved horn above the head, and a broad armored thorax. Smooth chestnut wing cases have a glossy lacquerlike finish and a distinct central seam. Beneath their rounded edges, six jointed legs carry hooked feet and small spines, while short segmented antennae terminate in compact, layered clubs. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p056'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p056_triplet.mp4.jpg' data-src='web/p056_triplet.mp4'></video></div>
+  <figcaption><b>Praying mantis</b><span class='prompt'>A praying mantis with a long narrow thorax, a triangular head, and large rounded compound eyes. Its folded grasping forelegs have paired rows of substantial spines, contrasting with the slender middle and hind legs. Overlapping leaflike wings cover the segmented abdomen, combining smooth green panels, fine raised veins, and thin, slightly translucent edges. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p057'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p057_triplet.mp4.jpg' data-src='web/p057_triplet.mp4'></video></div>
+  <figcaption><b>Spiny lobster</b><span class='prompt'>A spiny lobster with a broad armored head, an elongated segmented abdomen, and a wide tail fan composed of overlapping plates. Two exceptionally long antennae have closely spaced ridges and taper to fine points. Rows of sharp projections cover the reddish-brown carapace, while slender jointed legs, smaller feelers, and thin amber membranes introduce finer structures beneath the heavy shell. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p058'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p058_triplet.mp4.jpg' data-src='web/p058_triplet.mp4'></video></div>
+  <figcaption><b>Cacao pod</b><span class='prompt'>A cacao pod with a thick elongated body, deep longitudinal furrows, and a broad opening through one side of its leathery husk. Rounded seeds remain packed inside in connected rows beneath glossy white pulp. The red-brown exterior has raised uneven ribs and fine pebbled skin, contrasting with the pale fibrous inner wall and softly translucent seed coatings. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p059'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p059_triplet.mp4.jpg' data-src='web/p059_triplet.mp4'></video></div>
+  <figcaption><b>Corn cob</b><span class='prompt'>An ear of corn with tightly packed rows of plump yellow kernels and several attached husk leaves folded away from the upper portion. The kernels have rounded glossy surfaces and narrow recessed seams. Pale green husks show strong parallel fibers and thin curled edges, while a tangled tuft of fine reddish silk remains connected around the tapered tip. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p060'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p060_triplet.mp4.jpg' data-src='web/p060_triplet.mp4'></video></div>
+  <figcaption><b>Halved pomegranate</b><span class='prompt'>A ripe, split-open pomegranate section revealing dense, tightly packed arils nestled inside a pale, spongy endocarp. Each ruby-red seed pouch possesses a thin, taut outer membrane enclosing juicy, highly translucent flesh surrounding an opaque, fibrous core, giving off deep subsurface light distribution and glistening surface wetness. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p061'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p061_triplet.mp4.jpg' data-src='web/p061_triplet.mp4'></video></div>
+  <figcaption><b>Boulder opal</b><span class='prompt'>A boulder opal specimen with a rough, matte dark brown ironstone body cut and polished on one face to expose a vein of precious opal. The opal seam is a thin translucent layer with intense play-of-color in green, blue, and violet arising from its internal silica microstructure. The unpolished ironstone shows layered iron oxide bands and small pits. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p062'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p062_triplet.mp4.jpg' data-src='web/p062_triplet.mp4'></video></div>
+  <figcaption><b>Green fluorite cluster</b><span class='prompt'>A cluster of fluorite crystals, interpenetrating translucent cubes in gradients of emerald green and violet, some with beveled edges and stepped faces, all growing from a bed of small white quartz crystals on a rock matrix. The fluorite is glassy and deeply transparent, with internal color zoning in bands parallel to the cube faces and a few small internal fractures. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p063'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p063_triplet.mp4.jpg' data-src='web/p063_triplet.mp4'></video></div>
+  <figcaption><b>Quartz crystal cluster</b><span class='prompt'>A quartz crystal cluster with intergrown hexagonal prisms of unequal heights emerging from a rough mineral base. Broad clear faces meet at crisp edges and terminate in pointed pyramidal tips. Smaller crystals occupy the gaps between larger columns, while cloudy inclusions, fine growth striations, and irregular chipped margins interrupt the otherwise smooth transparent surfaces. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p064'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p064_triplet.mp4.jpg' data-src='web/p064_triplet.mp4'></video></div>
+  <figcaption><b>Sushi roll</b><span class='prompt'>A freshly prepared sushi roll sliced in half to display a colorful cross-section of translucent raw salmon, creamy green avocado, and crisp cucumber sticks wrapped in glossy, dark green nori seaweed. Individual grains of sushi rice show a sticky, semi-translucent starch coating with tiny suspended sesame seeds embedded along the outer perimeter. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p065'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p065_triplet.mp4.jpg' data-src='web/p065_triplet.mp4'></video></div>
+  <figcaption><b>Red grapes</b><span class='prompt'>A fresh cluster of red table grapes attached to a dry, branching woody stem. Each grape possesses a taut, semi-translucent skin coated in a thin, powdery white natural bloom, displaying soft internal light scattering and deep ruby tones beneath the matte surface dust. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p066'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p066_triplet.mp4.jpg' data-src='web/p066_triplet.mp4'></video></div>
+  <figcaption><b>Vintage leather ball</b><span class='prompt'>A vintage leather football showing thick, dark brown leather panels with heavy grain pores, hand-stitched white laces, exposed seam threads, and scuffed, worn highlights across the leather surface. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p067'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p067_triplet.mp4.jpg' data-src='web/p067_triplet.mp4'></video></div>
+  <figcaption><b>Algae-covered river pebble</b><span class='prompt'>A wet, smooth river pebble coated in a thin layer of translucent green river algae, showing soft light scattering across the damp stone surface and microscopic fibrous plant strands. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p068'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p068_triplet.mp4.jpg' data-src='web/p068_triplet.mp4'></video></div>
+  <figcaption><b>Enamel colander</b><span class='prompt'>An enameled steel colander with a hemispherical bowl perforated in concentric rings of small round holes, a rolled rim, two riveted looped handles, and a short pedestal foot ring. The enamel is speckled cream with a cobalt blue rim, glossy and slightly rippled over the pressed metal, with fine chipping at hole edges revealing dark grey steel beneath. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p069'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p069_triplet.mp4.jpg' data-src='web/p069_triplet.mp4'></video></div>
+  <figcaption><b>Tartan bagpipes</b><span class='prompt'>A set of Great Highland bagpipes with a tartan cloth bag cover in green and blue with a fringed edge, three long drones of black African blackwood with turned ivory-colored mounts and nickel ferrules, a chanter with a conical bore and finger holes, and a blowpipe with a mouthpiece. Twisted silk cords with heavy tassels bind the drones together, and the bag cover has a soft brushed wool texture. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p070'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p070_triplet.mp4.jpg' data-src='web/p070_triplet.mp4'></video></div>
+  <figcaption><b>Model steam engine</b><span class='prompt'>A working model horizontal steam engine on an integral cast-iron base plate, with a polished brass boiler wrapped in wooden lagging strips bound by brass bands, a tall smokestack, a large spoked flywheel, a single cylinder with a slide valve, a connecting rod and crank, a fly-ball governor with two brass weights on pivoting arms, a sight glass, a safety valve, and copper steam lines. The castings are green enamel with red pinstriping. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p071'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p071_triplet.mp4.jpg' data-src='web/p071_triplet.mp4'></video></div>
+  <figcaption><b>Galileo thermometer</b><span class='prompt'>A Galileo thermometer, a tall sealed glass cylinder filled with clear liquid, containing five small hand-blown glass spheres each partly filled with tinted liquid in red, blue, green, yellow, and violet, each sphere hung with a small brass tag disc on a thin wire. The cylinder has a domed top and rests in a turned wooden base. The glass is thick and strongly refractive. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p072'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p072_triplet.mp4.jpg' data-src='web/p072_triplet.mp4'></video></div>
+  <figcaption><b>Dewy succulent leaf</b><span class='prompt'>A fresh, dew-covered leaf of a succulent plant showing a thick, fleshy interior, taut semi-translucent epidermal skin, and a powdery, blue-green waxy bloom coating. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p073'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p073_triplet.mp4.jpg' data-src='web/p073_triplet.mp4'></video></div>
+  <figcaption><b>Vietnamese conical hat</b><span class='prompt'>A Vietnamese conical palm-leaf hat with a smooth pale straw cone built from overlapping dried palm leaves stitched in fine radial seams over a frame of concentric bamboo rings, each ring visible as a faint circumferential ridge. The leaf is thin and translucent, and the inside has a woven bamboo headband and a chin strap of colorful silk ribbon. The rim is neatly bound with thread. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p074'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p074_triplet.mp4.jpg' data-src='web/p074_triplet.mp4'></video></div>
+  <figcaption><b>Locking pliers</b><span class='prompt'>A pair of locking pliers with curved serrated jaws, two shaped steel handles, and an exposed compound linkage between them. A knurled adjustment screw extends from the lower handle, beside a smaller release lever. Brushed metal surfaces contrast with darker pivot recesses, stamped reinforcing ribs, and the sharply defined teeth along the opposing jaw faces. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p075'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p075_triplet.mp4.jpg' data-src='web/p075_triplet.mp4'></video></div>
+  <figcaption><b>Woodworking hand plane</b><span class='prompt'>A cast-metal hand plane with a long flat sole, raised sidewalls, and a curved wooden rear handle behind an angled steel blade assembly. A rounded wooden front knob anchors the opposite end. The exposed lever cap, knurled adjustment wheel, and narrow mouth opening create layered mechanical detail, contrasting with smooth polished wood and dark textured cast iron. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p076'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p076_triplet.mp4.jpg' data-src='web/p076_triplet.mp4'></video></div>
+  <figcaption><b>Long pine cone</b><span class='prompt'>A mature sugar pine cone, an elongated cylinder tapering to a rounded tip, composed of spiraling woody scales opened outward from a central axis. Each scale is a thick tongue with a raised diamond-shaped apophysis, a dark umbo at the tip, and thin papery seed wings tucked beneath. The scales are matte tan with darker bases, and glossy amber resin beads cling to their tips. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p077'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p077_triplet.mp4.jpg' data-src='web/p077_triplet.mp4'></video></div>
+  <figcaption><b>Honeycomb block</b><span class='prompt'>A chunk of raw honeycomb broken from a hive frame, with a wall of hexagonal wax cells in perfect tessellation on both faces. Some cells are capped with matte pale beeswax; others are open and filled with amber honey that is deeply translucent. The wax walls are thin and subsurface-scattering, ranging from cream to yellow to dark brown at the older center, and thick honey clings in suspended drops along the broken edge. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p078'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p078_triplet.mp4.jpg' data-src='web/p078_triplet.mp4'></video></div>
+  <figcaption><b>Pomegranate</b><span class='prompt'>A ripe pomegranate split open, revealing chambers packed with hundreds of ruby-red arils, each a glossy, translucent juice-filled sac with a pale seed visible inside. The chambers are separated by thin cream-colored membranes with a leathery matte surface, and the thick outer rind is deep crimson with a slightly waxy sheen and a dried crown-shaped calyx at the top. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p079'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p079_triplet.mp4.jpg' data-src='web/p079_triplet.mp4'></video></div>
+  <figcaption><b>Pineapple</b><span class='prompt'>A whole pineapple with a barrel-shaped body covered in a tessellation of hexagonal eyes arranged in spiraling rows, each eye a raised, slightly ridged scale with a dry pointed tip and a small brown bristle at the center. The rind is golden-orange mottled with green and brown, slightly waxy, and topped by a crown of long, stiff, spiky leaves with serrated edges. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p080'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p080_triplet.mp4.jpg' data-src='web/p080_triplet.mp4'></video></div>
+  <figcaption><b>Croquembouche</b><span class='prompt'>A croquembouche, a tall cone of dozens of small cream-filled choux pastry puffs stacked in spiraling rings and glued with hardened amber caramel that forms glossy drips and pooled joints between puffs. Fine threads of spun sugar wrap the entire tower in a tangled translucent web, and the pastry puffs are golden with cracked, matte, slightly irregular tops. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p081'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p081_triplet.mp4.jpg' data-src='web/p081_triplet.mp4'></video></div>
+  <figcaption><b>Barrel cactus</b><span class='prompt'>A fishhook barrel cactus, a stout ribbed cylinder with about twenty deep vertical ribs bearing rows of areoles, each areole a woolly white tuft sprouting a cluster of long, curved central spines with hooked tips and several thinner radial spines. The spines are red-brown fading to grey, and a ring of yellow-orange cup-shaped flowers and dry woolly fruit crowns the flat top. The skin is dull blue-green. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p082'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p082_triplet.mp4.jpg' data-src='web/p082_triplet.mp4'></video></div>
+  <figcaption><b>Head of garlic</b><span class='prompt'>A fresh, unpeeled head of garlic with multiple plump cloves wrapped in thin, papery white and violet-streaked outer skins. The parchment-like skin layers are semi-translucent, dry, and crinkled, revealing the smooth, pale, ivory-colored cloves underneath. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p083'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p083_triplet.mp4.jpg' data-src='web/p083_triplet.mp4'></video></div>
+  <figcaption><b>Knotted rope fender</b><span class='prompt'>A knotted rope fender with a thick elongated body enclosed by tightly interwoven bands of natural fiber cord. Large crossing knots form a raised diamond network around a denser central core, and an integral rope eye projects from one end. Individual strands have twisted ridges, short frayed fibers, and a muted waxy sheen at compressed junctions. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p084'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p084_triplet.mp4.jpg' data-src='web/p084_triplet.mp4'></video></div>
+  <figcaption><b>Woven straw hat</b><span class='prompt'>A woven straw sunhat with a rounded crown, a broad gently curved brim, and a thick bound outer edge. Narrow braided strands form concentric rows joined by fine stitching, with small gaps between the fibers. The straw varies naturally from pale cream to warm tan, and the crown has a slightly denser weave than the flexible brim. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p085'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p085_triplet.mp4.jpg' data-src='web/p085_triplet.mp4'></video></div>
+  <figcaption><b>Silk brocade cushion</b><span class='prompt'>An antique hand-woven silk brocade cushion featuring raised gold and crimson metallic threads interwoven with soft, tufted velvet segments. The fabric displays anisotropic luster along individual yarn loops, with fine, stray micro-fibers forming a delicate halo around the edges. Intricate geometric floral relief pattern steps up from the rich, woven base layer. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p086'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p086_triplet.mp4.jpg' data-src='web/p086_triplet.mp4'></video></div>
+  <figcaption><b>Old wooden pulley</b><span class='prompt'>An old, weathered wooden pulley with a grooved cast-iron wheel mounted inside a thick oak frame held together by rusted iron straps, showing deep wood grain splits and rough metal corrosion. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p087'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p087_triplet.mp4.jpg' data-src='web/p087_triplet.mp4'></video></div>
+  <figcaption><b>Peacock mantis shrimp</b><span class='prompt'>A peacock mantis shrimp with a segmented carapace in metallic green, blue, and orange, iridescent along the plate edges. It has two large stalked eyes with a triple-band pupil structure, long thin antennae, and a pair of enormous club-shaped raptorial appendages folded tightly beneath the head. The abdominal segments are armored in overlapping plates with red-spotted margins, ending in a broad fan-shaped tail with leopard-spotted uropods. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p088'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p088_triplet.mp4.jpg' data-src='web/p088_triplet.mp4'></video></div>
+  <figcaption><b>Sesame braided bread</b><span class='prompt'>A six-strand braided challah loaf, tall and oval, with the plaited strands crossing over one another in a tight interlocking pattern that swells at the center and tapers at both ends. The crust is deep mahogany and glossy from egg wash, dusted with sesame and poppy seeds that collect in the seams between strands, with pale cream dough exposed in the stretched gaps. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p089'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p089_triplet.mp4.jpg' data-src='web/p089_triplet.mp4'></video></div>
+  <figcaption><b>Moon moth</b><span class='prompt'>A luna moth with broad pale lime-green wings outstretched, each hindwing ending in a long curved tail, and each wing bearing a translucent eyespot ringed in yellow and maroon. The wings have a dusting of fine scales and a soft velvety finish, edged in dark maroon along the forewing margins. Its body is thick and covered in dense white fur-like hair, with feathery yellow-brown antennae. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p090'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p090_triplet.mp4.jpg' data-src='web/p090_triplet.mp4'></video></div>
+  <figcaption><b>Cape gooseberry, skeletonized husk</b><span class='prompt'>A cape gooseberry with a fully skeletonized husk, a lantern-shaped papery calyx whose tissue has weathered away to leave only a delicate lattice of thin pale veins, through which a glossy orange berry is visible at the center. The berry is smooth and slightly translucent with a waxy sheen, and the husk narrows to a small stem at the top and tapers to a point at the bottom. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p091'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p091_triplet.mp4.jpg' data-src='web/p091_triplet.mp4'></video></div>
+  <figcaption><b>Bladder wrack seaweed</b><span class='prompt'>A bladderwrack frond with flattened olive-brown branches, repeated forked divisions, and paired oval air bladders embedded along prominent midribs. The leathery ribbons have uneven edges and broader knobbly terminal sections. Smooth, slightly translucent tissue contrasts with the raised bladder walls and granular tips, while the lower branches converge into a short stem and compact attachment disc. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p092'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p092_triplet.mp4.jpg' data-src='web/p092_triplet.mp4'></video></div>
+  <figcaption><b>Tenor saxophone</b><span class='prompt'>A tenor saxophone with a long curved brass body, a broad flared bell, and a narrow hooked neck ending in a dark mouthpiece. Rows of padded key cups connect through fine rods, hinges, and spring wires along the tube. Mother-of-pearl touchpieces contrast with polished brass, darker recessed joints, and the softly textured cork beneath the mouthpiece. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p093'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p093_triplet.mp4.jpg' data-src='web/p093_triplet.mp4'></video></div>
+  <figcaption><b>Monarch chrysalis</b><span class='prompt'>A chrysalis of a monarch butterfly displaying a smooth, pale jade-green outer shell with high translucency. Along its upper rim is a row of raised, metallic gold dots that exhibit brilliant mirror-like reflectivity, while the semi-transparent cuticle reveals faint, dark outlines of developing wing patterns beneath the surface. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p094'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p094_triplet.mp4.jpg' data-src='web/p094_triplet.mp4'></video></div>
+  <figcaption><b>Macrame hanging planter</b><span class='prompt'>A macramé plant hanger of thick cream cotton cord, knotted in square knots and spiral half-hitch chains descending from a wooden ring, splitting into four strands that cradle a terracotta pot in a knotted net. Long frayed fringe hangs from the bottom gathering knot. The pot holds a Boston fern whose arching fronds are lined with dozens of small toothed leaflets in bright green, draped in layers over the rim. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p095'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p095_triplet.mp4.jpg' data-src='web/p095_triplet.mp4'></video></div>
+  <figcaption><b>Sea nettle jellyfish</b><span class='prompt'>A Pacific sea nettle jellyfish with a broad domed bell in translucent amber-brown, marked with a radiating pattern of darker reddish stripes and fine bumps. From the bell margin hang twenty-four long, thin, dark maroon tentacles, and from the center descend four frilly oral arms, ruffled into loose spiraling folds and slightly translucent white. The bell material is jelly-like and subsurface-scattering. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p096'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p096_triplet.mp4.jpg' data-src='web/p096_triplet.mp4'></video></div>
+  <figcaption><b>Sorghum broom</b><span class='prompt'>A traditional corn broom with a long hardwood handle, bound to a thick head of stiff broomcorn fibers by several rows of wire wrapping and tight cross-stitched cord bands that flatten the head into a fan. The fibers are straw-yellow with fine ridges and taper into splayed fraying tips, and the topmost fibers are folded over the handle beneath the binding. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p097'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p097_triplet.mp4.jpg' data-src='web/p097_triplet.mp4'></video></div>
+  <figcaption><b>Eucalyptus branch</b><span class='prompt'>A eucalyptus seed branch with a forked woody stem, narrow leathery leaves, and clusters of small cup-shaped capsules on short stalks. The capsules have thick rounded rims, recessed valve openings, and subtly ribbed sides. Waxy blue-green leaves contrast with the rough brown bark and dry gray seed cases, while their curved edges and raised midribs give the branch a varied silhouette. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p098'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p098_triplet.mp4.jpg' data-src='web/p098_triplet.mp4'></video></div>
+  <figcaption><b>Satin ballet shoes</b><span class='prompt'>A satin ballet pointe shoe with a rigid rounded toe box, a narrow waist, and an open heel section bordered by a gathered drawstring channel. Pale pink satin forms small pleats around the toe and has a directional sheen. Long attached ribbons contrast with the matte leather sole, reinforced stitching, and softly textured fabric lining. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p099'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p099_triplet.mp4.jpg' data-src='web/p099_triplet.mp4'></video></div>
+  <figcaption><b>Tambourine</b><span class='prompt'>A tambourine with a shallow circular wooden frame, a taut pale hide head, and paired metal jingles mounted in repeated slots around the rim. The thin jingles have shallow domed centers and unevenly worn edges. Small attachment pins, layered wood grain, and a stitched leather grip contrast with the smoother membrane and the narrow gaps between overlapping metal discs. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p100'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p100_triplet.mp4.jpg' data-src='web/p100_triplet.mp4'></video></div>
+  <figcaption><b>Seahorse specimen</b><span class='prompt'>A dried sea horse specimen featuring a rigid, segmented bony armor ring structure, a curved prehensile tail, a small tubular snout, and a delicate, semi-translucent dorsal fin. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p101'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p101_triplet.mp4.jpg' data-src='web/p101_triplet.mp4'></video></div>
+  <figcaption><b>Vintage teddy bear</b><span class='prompt'>An antique jointed teddy bear seated with limbs splayed, made of long-pile golden mohair that has thinned to reveal woven backing at the nose bridge and paw pads. It has a humped back, elongated curved arms, a pointed snout with a stitched black thread nose, small black glass eyes, and cupped ears, along with felt paw pads with claw stitching and visible disc joints at the shoulders and hips. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p102'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p102_triplet.mp4.jpg' data-src='web/p102_triplet.mp4'></video></div>
+  <figcaption><b>Wooden block and tackle</b><span class='prompt'>A wooden block-and-tackle assembly with two triple-sheave blocks of ash, each shell carved with rounded cheeks bound by iron straps and a swivel hook, and three brass sheaves set in each block. Thick tarred hemp rope threads through the sheaves in six falls, its three-strand twist clearly visible, and a long free tail of rope with a whipped end hangs from the lower block. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p103'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p103_triplet.mp4.jpg' data-src='web/p103_triplet.mp4'></video></div>
+  <figcaption><b>Biplane</b><span class='prompt'>A 1930s biplane trainer with two fabric-covered wings of unequal span joined by N-shaped struts and crossed bracing wires, a seven-cylinder radial engine exposed at the nose with cooling fins and a wooden two-blade propeller, tandem open cockpits with windscreens, fixed landing gear with wire-spoked wheels, and a tail with rudder and elevators. The fabric is taut doped yellow with visible rib stitching, and the fuselage is blue. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p104'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p104_triplet.mp4.jpg' data-src='web/p104_triplet.mp4'></video></div>
+  <figcaption><b>Jet engine</b><span class='prompt'>A bare seven-cylinder radial aircraft engine with cylinders arranged in a star around a central crankcase, each cylinder wrapped in dense parallel cooling fins and topped by a domed head with two rocker boxes and exposed pushrod tubes. A ring of steel exhaust pipes curves behind the cylinders, ignition wires run from a ring harness, and a splined propeller shaft protrudes from the front. The finish is matte grey crackle paint with polished aluminum accents. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p105'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p105_triplet.mp4.jpg' data-src='web/p105_triplet.mp4'></video></div>
+  <figcaption><b>Red-brown violin</b><span class='prompt'>A full-size violin with a spruce top of fine straight grain and a one-piece flamed maple back showing strong chatoyant figure under a warm red-brown oil varnish. It has two elegantly curved f-holes, inlaid purfling of black and white strips along the edges, a hand-carved scroll with four ebony pegs, an ebony fingerboard and tailpiece, four strings over a carved maple bridge, and a chinrest. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p106'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p106_triplet.mp4.jpg' data-src='web/p106_triplet.mp4'></video></div>
+  <figcaption><b>Bicycle rear derailleur</b><span class='prompt'>A bicycle rear derailleur with a compact articulated metal body and a long narrow cage containing two toothed pulley wheels. Offset pivots, a coiled spring, and a curved cable guide create several connected levels around the mounting joint. Matte black composite sections contrast with brushed aluminum links, steel fasteners, and the fine molded ridges on the pulley teeth. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p107'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p107_triplet.mp4.jpg' data-src='web/p107_triplet.mp4'></video></div>
+  <figcaption><b>Quadcopter drone</b><span class='prompt'>A compact quadcopter drone with four carbon-fiber arms connected to a central frame of stacked plates and spacers. Each arm ends in a cylindrical motor and a thin two-bladed propeller. A fitted battery is secured by a woven strap, with exposed insulated wires, metal fasteners, and curved protective guards contrasting with the smooth polymer blades and textured composite structure. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p108'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p108_triplet.mp4.jpg' data-src='web/p108_triplet.mp4'></video></div>
+  <figcaption><b>Anatomical heart model</b><span class='prompt'>A detailed anatomical model of a human heart constructed from semi-translucent, flexible silicone to reveal internal chambers, muscular trabeculae, and delicate heart valves. The exterior displays a network of branching coronary arteries and veins filled with opaque red and blue fluids, contrasting sharp vascular conduits against soft, light-scattering myocardial walls. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p109'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p109_triplet.mp4.jpg' data-src='web/p109_triplet.mp4'></video></div>
+  <figcaption><b>Gold-rimmed glasses</b><span class='prompt'>A pair of antique wire-rimmed spectacles featuring ultra-thin gold-filled frames, flexible cable temples, and round, prescription glass lenses showing subtle edge thickness, blue anti-reflective coatings, and nose pad details. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p110'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p110_triplet.mp4.jpg' data-src='web/p110_triplet.mp4'></video></div>
+  <figcaption><b>Porcelain insulator</b><span class='prompt'>A porcelain electrical insulator with several broad umbrella-shaped flanges arranged along a thick central core. Each flange has a smoothly rounded upper surface, a thinner outer rim, and concentric reinforcing ribs beneath it. Glossy pale gray glaze contrasts with the rougher metal end fittings, including a threaded steel pin and a heavy galvanized attachment cap. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p111'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p111_triplet.mp4.jpg' data-src='web/p111_triplet.mp4'></video></div>
+  <figcaption><b>Queen conch</b><span class='prompt'>A queen conch shell with a heavy spiral body, a raised pointed spire, and a broad flared outer lip surrounding an elongated opening. Rounded knobs form a crown along the upper whorl, while smaller growth ridges follow the curved exterior. The rough cream-and-tan outer shell contrasts with the smooth glossy pink aperture and its thick, softly rolled edge. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p112'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p112_triplet.mp4.jpg' data-src='web/p112_triplet.mp4'></video></div>
+  <figcaption><b>Peacock-feather fan</b><span class='prompt'>A mature peacock feather fan assembled with overlapping tail feathers anchored in a carved mother-of-pearl base. Each feather features a central chitinous shaft supporting thousands of microscopic, iridescent barbules that shift natively between brilliant teal, violet, and gold. The pearlescent shell base exhibits smooth, milky translucency with soft rainbow sheen across its sculpted curves. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p113'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p113_triplet.mp4.jpg' data-src='web/p113_triplet.mp4'></video></div>
+  <figcaption><b>Brass diving helmet</b><span class='prompt'>A detailed miniature model of an old-fashioned brass diving helmet, complete with heavy circular viewing ports, riveted metal seams, brails, and a textured, oxidized copper neck ring. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p114'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p114_triplet.mp4.jpg' data-src='web/p114_triplet.mp4'></video></div>
+  <figcaption><b>Buttermilk pancakes</b><span class='prompt'>A stack of three freshly cooked buttermilk pancakes topped with a melting pat of semi-translucent yellow butter and drizzled with glossy, amber maple syrup. The syrup flows down the porous, browned sides of the pancakes, filling tiny surface pockets and creating thick, clear liquid drips along the edges. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p115'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p115_triplet.mp4.jpg' data-src='web/p115_triplet.mp4'></video></div>
+  <figcaption><b>Sliced roast beef</b><span class='prompt'>A freshly cut slice of rare roast beef displaying a rich, deep red center with a moist, fibrous texture surrounded by a dark, seared outer crust. Tiny droplets of clear meat juices and melted fat glisten across the cut muscle bundles and thin interstitial fat lines. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p116'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p116_triplet.mp4.jpg' data-src='web/p116_triplet.mp4'></video></div>
+  <figcaption><b>Dragon-vein agate</b><span class='prompt'>A cut dragon agate stone polished into a smooth cabochon, displaying intricate spiderweb-like fracture patterns filled with translucent chalcedony inside a milky quartz matrix. The stone exhibits deep internal spatial contrast between opaque dark vein networks and light-scattering mineral pockets. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p117'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p117_triplet.mp4.jpg' data-src='web/p117_triplet.mp4'></video></div>
+  <figcaption><b>Mother-of-pearl buttons</b><span class='prompt'>A stack of raw, polished mother-of-pearl buttons showing natural iridescence, iridescent pink and green sheen, fine drilled thread holes, and subtle rim bevels. Highly detailed real photography.</span></figcaption>
+</figure><figure class='card wide' id='card-p118'>
+  <div class='trip'><video muted loop playsinline preload='none' poster='web/p118_triplet.mp4.jpg' data-src='web/p118_triplet.mp4'></video></div>
+  <figcaption><b>Brass kaleidoscope</b><span class='prompt'>An antique brass kaleidoscope featuring a textured leather barrel and an glass object chamber filled with colorful, translucent glass shards and beads. Highly detailed real photography.</span></figcaption>
+</figure></div>
+</section>
+
+</main>
+<footer class="site-footer"><p>Anonymous project page. Last edited: 26 September 2026.</p></footer>
+</body></html>
